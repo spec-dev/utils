@@ -1,9 +1,9 @@
 import { StringKeyMap } from './types'
 
-export async function getArgs(req: Request): Promise<any[] | null> {
+export async function getPayload(req: Request): Promise<any[] | null> {
     try {
         const payload = await req.json()
-        return payload?.args || []
+        return payload || {}
     } catch (err) {
         console.error(`Error parsing JSON payload: ${err}`)
         return null
