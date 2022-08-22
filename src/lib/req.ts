@@ -10,14 +10,10 @@ export async function getPayload(req: Request): Promise<any[] | null> {
     }
 }
 
-export function jsonResp(body: StringKeyMap): Response {
-    return new Response(JSON.stringify(body), {
+export function jsonResp(data: StringKeyMap): Response {
+    return new Response(JSON.stringify(data), {
         headers: { 'Content-Type': 'application/json' },
     })
-}
-
-export function success(data: any): Response {
-    return jsonResp({ data, error: null })
 }
 
 export function error(error: any): Response {
@@ -25,5 +21,5 @@ export function error(error: any): Response {
     if (typeof error === 'object') {
         msg = error.message || error.msg
     }
-    return jsonResp({ error: msg, data: null })
+    return jsonResp({ error: msg })
 }
